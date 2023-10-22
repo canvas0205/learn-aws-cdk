@@ -1,0 +1,14 @@
+{
+  "name": "TypeScript",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "app" ,
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"xabikos.JavaScriptSnippets",
+				"AmazonWebServices.aws-toolkit-vscode"
+			]
+		}
+	}
+}

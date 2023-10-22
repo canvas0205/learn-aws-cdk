@@ -1,0 +1,3 @@
+# AWS CLIの認証情報
+.aws/*
+!.aws/.gitkeep
