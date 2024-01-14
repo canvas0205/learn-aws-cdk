@@ -1,17 +1,19 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as HelloCdk from '../lib/hello-cdk-stack';
+import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import * as HelloCdk from '../lib/hello-cdk-stack';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/hello-cdk-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new HelloCdk.HelloCdkStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+test('HelloCdkStack S3 Bucket Created', () => {
+  const app = new cdk.App();
+  const stack = new HelloCdk.HelloCdkStack(app, 'MyTestStack');
+  const template = Template.fromStack(stack);
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+  template.hasResourceProperties("AWS::S3::Bucket", {
+    // リソース名がAWS::S3::Bucketの場合に指定できるプロパティ一覧
+    // 2024/1/14現在、removalPolicyとautoDeleteObjectsはないので確認できない
+    // https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html
+    BucketName: "test-bucket",
+    VersioningConfiguration: {
+      Status: 'Enabled',
+    },
+  });
 });
